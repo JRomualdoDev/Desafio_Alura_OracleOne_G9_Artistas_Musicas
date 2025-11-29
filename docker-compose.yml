@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'ScreenSound'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=screenSound'
+      - 'MYSQL_PASSWORD=spring'
+      - 'MYSQL_ROOT_PASSWORD=root'
+      - 'MYSQL_USER=spring'
+    ports:
+      - '3307:3306'
