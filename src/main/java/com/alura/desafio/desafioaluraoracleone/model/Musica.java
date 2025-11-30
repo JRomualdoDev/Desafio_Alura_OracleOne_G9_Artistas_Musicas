@@ -15,6 +15,10 @@ public class Musica {
     @JoinColumn(name = "artista_id")
     private Artista artista;
 
+    public Long getId() {
+        return id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -29,5 +33,14 @@ public class Musica {
 
     public void setArtista(Artista artista) {
         this.artista = artista;
+    }
+
+    @Override
+    public String toString() {
+        return "Musica{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", artista=" + artista +
+                '}';
     }
 }
