@@ -15,21 +15,29 @@ public class ArtistaService {
         this.artistaRepository = artistaRepository;
     }
 
-    public Artista save(Artista artista) {
+    public String save(Artista artista) {
 
         Optional<Artista> filtroExistArtista = artistaRepository.findByNome(artista.getNome());
 
         if (filtroExistArtista.isPresent()) {
-            System.out.println("Artista já existente");
-            return null;
+            return "Artista já existe.";
         }
 
-         return artistaRepository.save(artista);
+         artistaRepository.save(artista);
+
+        return "Dados salvo com sucesso.";
     }
 
     public Artista findByNome(String nome) {
 
         Optional<Artista> artista = artistaRepository.findByNome(nome);
         return artista.orElse(null);
+    }
+
+    public Artista findByNomeComMusicas(String nome) {
+        Optional<Artista> artista = artistaRepository.findByNomeComMusicas(nome);
+
+        return artista.orElse(null);
+
     }
 }
