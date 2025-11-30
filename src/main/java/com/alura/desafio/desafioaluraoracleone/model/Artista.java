@@ -57,4 +57,14 @@ public class Artista {
         musicas.add(musica);
         musica.setArtista(this);
     }
+
+    @Override
+    public String toString() {
+        return "Artista{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", tipo=" + tipo +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
 }
