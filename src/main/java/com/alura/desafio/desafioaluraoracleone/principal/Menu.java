@@ -4,19 +4,27 @@ import com.alura.desafio.desafioaluraoracleone.model.Artista;
 import com.alura.desafio.desafioaluraoracleone.model.Musica;
 import com.alura.desafio.desafioaluraoracleone.model.enums.TipoArtista;
 import com.alura.desafio.desafioaluraoracleone.service.ArtistaService;
+import com.alura.desafio.desafioaluraoracleone.service.ConsultaChatGPT;
 import com.alura.desafio.desafioaluraoracleone.service.MusicaService;
+import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.Scanner;
 
+@Component
 public class Menu {
 
     private final ArtistaService artistaService;
     private final MusicaService musicaService;
+    private final ConsultaChatGPT consultaChatGPT;
 
-    public Menu(ArtistaService artistaService,  MusicaService musicaService) {
+    public Menu(
+            ArtistaService artistaService,
+            MusicaService musicaService,
+            ConsultaChatGPT consultaChatGPT
+    ) {
         this.artistaService = artistaService;
         this.musicaService = musicaService;
+        this.consultaChatGPT = consultaChatGPT;
     }
 
     Scanner sc = new Scanner(System.in);
@@ -29,6 +37,7 @@ public class Menu {
             System.out.println("2 - Cadastrar música");
             System.out.println("3 - Buscar artista");
             System.out.println("4 - Buscar música");
+            System.out.println("5 - Buscar Artista Bio Chat GPT");
             System.out.println("0 - sair");
             
             String option = sc.nextLine();
@@ -45,6 +54,9 @@ public class Menu {
                     break;
                 case "4":
                     buscarMusica();
+                    break;
+                case "5":
+                    pesquisarArtistaChapGPT();
                     break;
                 case "0":
                     System.exit(0);
@@ -149,10 +161,32 @@ public class Menu {
     private void buscarMusica() {
 
         System.out.println("Digite o nome da música:");
-        String musica = sc.nextLine();
+        String titulo = sc.nextLine();
 
-        Musica musica = musicaService.findMusicaByNome(musica);
+        Musica musica = musicaService.findMusicaByTitulo(titulo);
 
+        if (musica == null) {
+            System.out.println("Musica inexistente");
+            return;
+        }
+
+        System.out.println("");
+        System.out.println("*".repeat(50));
+        System.out.println("Id: " + musica.getId());
+        System.out.println("Titulo: " + musica.getTitulo());
+        System.out.println("Artista: " + musica.getArtista().getNome());
+        System.out.println("*".repeat(50));
+        System.out.println("");
+
+    }
+
+    private void pesquisarArtistaChapGPT() {
+        System.out.println("Digite o nome do artista:");
+        String titulo = sc.nextLine();
+
+        String info = consultaChatGPT.obterInformacaoArtista(titulo);
+
+        System.out.println(info);
     }
 
     private void mensagemHelper(String mensagem) {
