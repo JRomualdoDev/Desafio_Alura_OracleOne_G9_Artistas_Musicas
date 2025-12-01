@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface MusicaRepository extends JpaRepository<Musica, Long> {
 
-    Optional<Musica> findByTitulo(Musica musica);
+    Optional<Musica> findByTitulo(String musica);
 
 }
