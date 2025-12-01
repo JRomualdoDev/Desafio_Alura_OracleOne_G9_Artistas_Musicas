@@ -1,20 +1,18 @@
 package com.alura.desafio.desafioaluraoracleone;
 
-import com.alura.desafio.desafioaluraoracleone.service.MusicaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.alura.desafio.desafioaluraoracleone.principal.Menu;
-import com.alura.desafio.desafioaluraoracleone.service.ArtistaService;
 
 @SpringBootApplication
 public class DesafioAluraOracleOneG9ArtistasEMusicasApplication implements CommandLineRunner {
 
-    @Autowired
-    private ArtistaService artistaService;
-    @Autowired
-    private MusicaService musicaService;
+    private final Menu menu;
+
+    public DesafioAluraOracleOneG9ArtistasEMusicasApplication(Menu menu) {
+        this.menu = menu;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(DesafioAluraOracleOneG9ArtistasEMusicasApplication.class, args);
@@ -22,7 +20,6 @@ public class DesafioAluraOracleOneG9ArtistasEMusicasApplication implements Comma
 
     @Override
     public void run(String... args) throws Exception {
-        Menu menu = new Menu(artistaService, musicaService);
         menu.execute();
     }
 }
