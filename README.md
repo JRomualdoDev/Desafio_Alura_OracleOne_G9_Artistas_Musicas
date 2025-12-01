@@ -40,7 +40,7 @@ graph TD
     end
 
     subgraph "Banco de Dados"
-        J & K --> L[(("🗃️ MySQL DB"))]
+        J & K --> L[("🗃️ MySQL DB")]
     end
     
     subgraph "API Externa"
