@@ -2,7 +2,6 @@ package com.alura.desafio.desafioaluraoracleone.service;
 
 import com.alura.desafio.desafioaluraoracleone.model.Artista;
 import com.alura.desafio.desafioaluraoracleone.model.Musica;
-import com.alura.desafio.desafioaluraoracleone.principal.Menu;
 import com.alura.desafio.desafioaluraoracleone.repository.ArtistaRepository;
 import com.alura.desafio.desafioaluraoracleone.repository.MusicaRepository;
 import org.springframework.stereotype.Service;
@@ -43,7 +42,7 @@ public class MusicaService {
         }
     }
 
-    public Musica findMusicaByNome(Musica musica) {
+    public Musica findMusicaByTitulo(String musica) {
 
         Optional<Musica> musicaFiltro = musicaRepository.findByTitulo(musica);
 
