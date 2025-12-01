@@ -18,36 +18,33 @@ O objetivo principal é construir um sistema em Java utilizando o framework Spri
 
 O diagrama abaixo ilustra a arquitetura da aplicação, mostrando o fluxo de interação desde o usuário até o banco de dados e a API externa.
 
-```mermaid
 graph TD
-    A[👤 Usuário] --> B{💻 Menu Principal (CLI)};
-    
-    B --> C[1. Cadastrar Artistas];
-    B --> D[2. Cadastrar Músicas];
-    B --> E[3. Listar Músicas];
-    B --> F[4. Pesquisar sobre Artista];
-    B --> G[5. Listar Artistas];
+A[👤 Usuário] --> B{"💻 Menu Principal (CLI)"}
+
+    B --> C[1. Cadastrar Artistas]
+    B --> D[2. Cadastrar Músicas]
+    B --> E[3. Listar Músicas]
+    B --> F[4. Pesquisar sobre Artista]
+    B --> G[5. Listar Artistas]
 
     subgraph "Camada de Serviço"
-        C & G--> H(🎤 ArtistaService);
-        D & E--> I(🎶 MusicaService);
-        F --> M(🧠 ConsultaChatGPT);
+        C & G --> H(🎤 ArtistaService)
+        D & E --> I(🎶 MusicaService)
+        F --> M(🧠 ConsultaChatGPT)
     end
 
     subgraph "Camada de Acesso a Dados"
-        H --> J(🔧 ArtistaRepository);
-        I --> K(🔧 MusicaRepository);
+        H --> J(🔧 ArtistaRepository)
+        I --> K(🔧 MusicaRepository)
     end
 
     subgraph "Banco de Dados"
-        J & K --> L[((🗃️ MySQL DB))];
+        J & K --> L[((🗃️ MySQL DB))]
     end
     
     subgraph "API Externa"
-        M --> N[🤖 OpenAI API];
+        M --> N[🤖 OpenAI API]
     end
-
-```
 
 ## 🛠️ Tecnologias Utilizadas
 
